@@ -1,0 +1,35 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Create an S3 Bucket using CloudFormation Parameters
+
+Parameters:
+  BucketName:
+    Type: String
+    Description: Name of the S3 bucket
+    MinLength: 3
+    MaxLength: 63
+    Default: "demo-technical-guftugu-bucket-2"
+
+  Environment:
+    Type: String
+    Description: Environment name
+    Default: dev
+    AllowedValues:
+      - dev
+      - test
+      - prod
+
+Resources:
+  MyS3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Ref BucketName
+      Tags:
+        - Key: Environment
+          Value: !Ref Environment
+        - Key: CreatedBy
+          Value: CloudFormation
+
+Outputs:
+  BucketName:
+    Description: Name of the created S3 bucket
+    Value: !Ref MyS3Bucket
