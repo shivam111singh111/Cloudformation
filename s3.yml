@@ -9,13 +9,6 @@ Parameters:
     MaxLength: 63
     Default: "demo-technical-guftugu-bucket-2"
 
-  BucketName1:
-    Type: String
-    Description: Name of the S3 bucket
-    MinLength: 3
-    MaxLength: 63
-    Default: "demo-technical-guftugu-bucket-3"
-
   Environment:
     Type: String
     Description: Environment name
@@ -30,15 +23,6 @@ Resources:
     Type: AWS::S3::Bucket
     Properties:
       BucketName: !Ref BucketName
-      Tags:
-        - Key: Environment
-          Value: !Ref Environment
-        - Key: CreatedBy
-          Value: CloudFormation
-  MyS3Bucket1:
-    Type: AWS::S3::Bucket
-    Properties:
-      BucketName: !Ref BucketName1
       Tags:
         - Key: Environment
           Value: !Ref Environment
